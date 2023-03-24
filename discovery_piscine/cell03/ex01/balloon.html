@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 10;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #balloon {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="balloon"></div>
+  <script>
+
+    const balloon = document.getElementById("balloon");
+    const colorList = ["red", "green", "blue"];
+    let balloon_size = 200;
+    let x = 0;
+
+    
+    function setBalloon(balloon_newSize, i, cList) {
+      const style = balloon.style
+      balloon_size = balloon_newSize > 420 || balloon_newSize < 200 ? 200 : balloon_newSize
+      style.width = balloon_size.toString() + "px"
+      style.height = balloon_size.toString() + "px"
+      style.backgroundColor = cList.at(i % 3);
+    }
+    
+    balloon.addEventListener("click", () => setBalloon(balloon_size + 10, ++x, colorList))
+    balloon.addEventListener("mouseleave", () => setBalloon(balloon_size - 5, --x, colorList))
+  
+    // function sizing(balloon_newSize) {
+      // if (balloon.offsetWidth >= 420 || balloon.offsetWidth >= 420) {
+      //   style.width  = balloon_narmal_width.toString() + "px";
+      //   style.height = balloon_narmal_width.toString() + "px";
+      // } else {
+      //   style.width = (balloon.offsetWidth + 10).toString() + "px";
+      //   style.height = (balloon.offsetHeight + 10).toString() + "px";
+      // }
+    // }
+
+    // function leave() {
+    //   if (balloon.offsetWidth > 200 || balloon.offsetHeight > 200) {
+    //     style.width = (balloon.offsetWidth - 5).toString() + "px";
+    //     style.height = (balloon.offsetHeight - 5).toString() + "px";
+    //   }
+    // }
+  
+    // balloon.onmouseover = () => leave();
+    // balloon.onmouseleave = () => leave();
+
+  </script>
+</body>
+
+</html>

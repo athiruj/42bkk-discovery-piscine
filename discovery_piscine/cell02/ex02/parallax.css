@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content,.parallax1,.parallax2{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black
+}
+
+.content,.parallax1,.parallax2 > p {
+    color: white;
+    font: 2em sans-serif;
+}
+
+.parallax1, .parallax2 > p {
+    color: black
+}
+
+.parallax1{
+    background-image: url("parallax1.jpg")
+}
+.parallax2{
+    background-image: url("parallax2.jpg")
+}
+
+.parallax1, .parallax2 {
+    min-height: 80vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
