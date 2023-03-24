@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #balloon {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        border-radius: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="balloon"></div>
+    <script>
+
+      const balloon = document.getElementById("balloon");
+      const colorList = ["red", "green", "blue"];
+      let x = 0;
+
+      function sizing(id){
+          const width = id.offsetWidth;
+          const height = id.offsetHeight;
+        if( width == 420 || height == 420){
+          id.style.width = "200px";
+          id.style.height = "200px";
+        }else{
+          id.style.width = (width + 10).toString() + "px";
+          id.style.height = (height + 10).toString() + "px";
+        }
+      }
+
+      function colorring(id, cList){
+          if (x == cList.lenght){
+           x =0;  
+          }
+          x = x+1
+          
+          id.style.backgroundColor = cList[x]
+      }
+
+      balloon.onclick = () => {
+          sizing(balloon);
+          colorring(balloon,colorList);
+          console.log(balloon.offsetWidth)
+      }
+    </script>
+  </body>
+</html>
