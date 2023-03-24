@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body,.a,table{
+    height: 100%;
+    width: 100%;
+  }
+
+  table {
+    border-spacing: 0;
+    border: 1px black solid;
+  }
+
+  td {
+    width: 50%;
+    height: 100%;
+    font: 1em sans-serif;
+  }
+  .b {
+    border-right: 1px darkgray solid;
+    background-color: lightgreen;
+  }
+
+  .c {
+    background-color: peachpuff;
+  }

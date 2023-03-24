@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body,.body{
+    height: 100%;
+    width: 100%;
+}
+.body,.content,.trainPfL,.trainLfP,.rate{
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.content,.rate{
+    flex-direction: row;
+}
+
+select{
+    margin: 0.5em
+}
+
