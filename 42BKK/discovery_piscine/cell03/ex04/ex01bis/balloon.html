@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 10;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #balloon {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="balloon"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>  
+  <script>
+
+    const balloon = $("#balloon");
+    const colorList = ["red", "green", "blue"];
+    let balloon_size = 200;
+    let x = 0;
+
+    
+    function setBalloon(balloon_newSize, i, cList) {
+      balloon_size = balloon_newSize > 420 || balloon_newSize < 200 ? 200 : balloon_newSize
+      balloon.css("width",balloon_size.toString() + "px")
+      balloon.css("height",balloon_size.toString() + "px")
+      balloon.css("background-color",cList.at(i % 3))
+    }
+    
+    balloon.click(() => setBalloon(balloon_size + 10, ++x, colorList))
+    balloon.mouseleave(() => setBalloon(balloon_size - 5, --x, colorList))
+
+  </script>
+</body>
+
+</html>

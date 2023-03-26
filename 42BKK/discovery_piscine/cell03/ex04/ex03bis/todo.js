@@ -1,5 +1,5 @@
-const lists = document.getElementById("ft_list");
-const btn_n = document.getElementById("btn_n");
+const lists = $("#ft_list");
+const btn_n = $("#btn_n");
 let todos = new Map();
 
 function addTodo(map, element) {
@@ -14,7 +14,6 @@ function addTodo(map, element) {
 }
 
 function removeTodo(map, element, value) {
-  console.log(value);
   map.delete(value);
   saveTodo(map);
   loadTodo(map, element);
@@ -22,7 +21,7 @@ function removeTodo(map, element, value) {
 
 function saveTodo(map) {
   const json = JSON.stringify(Object.fromEntries(map));
-  document.cookie = `${json}`;
+  $.cookie("", json);
 }
 
 function loadTodo(map, element) {
@@ -30,30 +29,27 @@ function loadTodo(map, element) {
   map.forEach((value, key) => {
     item.push(createTodo(map, element, key, value));
   });
-  element.replaceChildren(...item);
+  element.empty().append(...item);
 }
 
 function getTodo(map, element) {
-  const data = document.cookie;
-  if (!data) {
+  const data = Object.keys($.cookie(""));
+  if (!data || data == "[object Object]") {
     return;
   }
   map = new Map(Object.entries(JSON.parse(data)));
   loadTodo(map, element);
-
   return map;
 }
 
 function createTodo(map, element, id, value) {
-  const item = document.createElement("li");
-  item.id = id;
-  item.innerHTML = value;
-  item.addEventListener("click", (data) =>
-    removeTodo(map, element, data.target.id)
-  );
+  const item = $("<li></li>");
+  item.attr("id", id);
+  item.html(value);
+  item.click((data) => removeTodo(map, element, data.target.id));
   return item;
 }
 
 todos = getTodo(todos, lists);
 
-btn_n.addEventListener("click", () => addTodo(todos, lists));
+btn_n.click(() => addTodo(todos, lists));

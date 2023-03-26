@@ -98,12 +98,13 @@
     </div>
     <button type="submit" id="btn">Try me!</button>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script>
-    const firstNum = document.getElementById("firstNum");
-    const secondNum = document.getElementById("secondNum");
-    const operator = document.getElementById("operator");
-    const btn = document.getElementById("btn");
-    const label = document.getElementById("label");
+    const firstNum = $("#firstNum");
+    const secondNum = $("#secondNum");
+    const operator = $("#operator");
+    const btn = $("#btn");
+    const label = $("#label");
 
     // optional function
     // function validateInput(id) {
@@ -120,16 +121,16 @@
 
     function validateBtn(firstId, secondId) {
       try {
-        const num1 = parseFloat(firstId.value);
-        const num2 = parseFloat(secondId.value);
-        if (firstId.value == "" || secondId.value == "") {
-          label.innerHTML = "input number";
+        const num1 = parseFloat(firstId.val());
+        const num2 = parseFloat(secondId.val());
+        if (firstId.val() == "" || secondId.val() == "") {
+          label.html("input number");
           return false;
         } else if (isNaN(num1) || isNaN(num2)) {
-          label.innerHTML = "input only number";
+          label.html("input only number");
           return false;
         } else if (num1 < 0 || num2 < 0) {
-          label.innerHTML = "positive only number";
+          label.html("positive only number");
           alert("Error :(");
           return false;
         }
@@ -142,10 +143,10 @@
 
     function calc(firstId, secondId, operator) {
       if (validateBtn(firstId, secondId)) {
-        const num1 = parseFloat(firstId.value);
-        const num2 = parseFloat(secondId.value);
+        const num1 = parseFloat(firstId.val());
+        const num2 = parseFloat(secondId.val());
         let result;
-        switch (operator.value) {
+        switch (operator.val()) {
           case "add":
             result = num1 + num2;
             console.log(result);
@@ -197,11 +198,7 @@
 
     alear()
 
-    btn.addEventListener("click", () => {
-      calc(firstNum, secondNum, operator);
-      ale
-
-    });
+    btn.click(() => { calc(firstNum, secondNum, operator); });
 
 
   </script>
