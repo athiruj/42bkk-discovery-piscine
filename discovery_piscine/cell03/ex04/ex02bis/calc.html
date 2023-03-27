@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body,
+    .body,
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    html,
+    body,
+    .body {
+      height: 100%;
+    }
+
+    .body {
+      flex-direction: column;
+    }
+
+    input,
+    select,
+    button,
+    #label {
+      width: 260px;
+      height: 36px;
+      text-align: center;
+      font: 1.2em sans-serif;
+      color: gray;
+    }
+
+    select {
+      margin: 10px;
+      width: 60px;
+      text-align: start;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    input,
+    select,
+    button {
+      outline: none;
+      border: 1.5px lightgray solid;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      border-color: gray;
+    }
+
+    select,
+    button {
+      background-color: #efefef;
+    }
+
+    select {
+      padding-left: 12px;
+    }
+
+    #label {
+      width: 100%;
+      font: 1.2em sans-serif;
+      letter-spacing: 0.5em;
+      color: #f00;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body">
+    <p id="label">&nbsp</p>
+    <div class="content">
+      <input type="text" id="firstNum" />
+      <select name="op_se" class="operator" id="operator">
+        <option value="add" id="add">+</option>
+        <option value="sub" id="sub">-</option>
+        <option value="multi" id="multipl">*</option>
+        <option value="division" id="division">/</option>
+        <option value="modula" id="modula">%</option>
+      </select>
+      <input type="text" id="secondNum" />
+    </div>
+    <button type="submit" id="btn">Try me!</button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script>
+    const firstNum = $("#firstNum");
+    const secondNum = $("#secondNum");
+    const operator = $("#operator");
+    const btn = $("#btn");
+    const label = $("#label");
+
+    // optional function
+    // function validateInput(id) {
+    //   id.value = id.value
+    //     .replace(/[^0-9.]/g, "")
+    //     .replace(/([\..*])\./g, "$1");
+    // }
+
+    // firstNum.addEventListener("input", () => validateInput(firstNum));
+    // secondNum.addEventListener("input", () => validateInput(secondNum));
+
+
+
+
+    function validateBtn(firstId, secondId) {
+      try {
+        const num1 = parseFloat(firstId.val());
+        const num2 = parseFloat(secondId.val());
+        if (firstId.val() == "" || secondId.val() == "") {
+          label.html("input number");
+          return false;
+        } else if (isNaN(num1) || isNaN(num2)) {
+          label.html("input only number");
+          return false;
+        } else if (num1 < 0 || num2 < 0) {
+          label.html("positive only number");
+          alert("Error :(");
+          return false;
+        }
+      } catch (e) {
+        alert(e);
+        return false;
+      }
+      return true;
+    }
+
+    function calc(firstId, secondId, operator) {
+      if (validateBtn(firstId, secondId)) {
+        const num1 = parseFloat(firstId.val());
+        const num2 = parseFloat(secondId.val());
+        let result;
+        switch (operator.val()) {
+          case "add":
+            result = num1 + num2;
+            console.log(result);
+            alert(result);
+            break;
+          case "sub":
+            result = num1 - num2;
+            console.log(result);
+            alert(result);
+            break;
+          case "multi":
+            result = num1 * num2;
+            console.log(result);
+            alert(result);
+            break;
+          case "division":
+            result = num1 / num2;
+            console.log(result);
+            if (num1 == 0 || num2 == 0) {
+              console.log();
+              alert("It’s over 9000!");
+            } else {
+              alert(result);
+            }
+            break;
+          case "modula":
+            result = num1 % num2;
+            console.log(result);
+            if (num1 == 0 || num2 == 0) {
+              console.log();
+              alert("It’s over 9000!");
+            } else {
+              alert(result);
+            }
+            break;
+          default:
+            alert("Error :(")
+        }
+      }
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
+    function alear() {
+      sleep(30000).then(() => { alert("Please, use me..."), alear() });
+    }
+
+    alear()
+
+    btn.click(() => { calc(firstNum, secondNum, operator); });
+
+
+  </script>
+</body>
+
+</html>
